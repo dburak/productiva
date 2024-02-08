@@ -1,0 +1,39 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Productiva Backend",
+  "main": "index.ts",
+  "scripts": {
+    "tsc": "tsc",
+    "dev": "ts-node-dev index.ts",
+    "lint": "eslint --ext .ts .",
+    "start": "node build/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dburak/productiva.git"
+  },
+  "keywords": [
+    "product",
+    "company",
+    "manager",
+    "management"
+  ],
+  "author": "Burak Diker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dburak/productiva/issues"
+  },
+  "homepage": "https://github.com/dburak/productiva#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.56.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
