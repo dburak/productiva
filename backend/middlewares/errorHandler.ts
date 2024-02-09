@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { ZodError } from 'zod';
 
 export function errorHandler(
   error: unknown,
@@ -6,20 +7,18 @@ export function errorHandler(
   response: Response,
   _next: NextFunction
 ) {
-  const statusCode = response.statusCode !== 200 ? response.statusCode : 500;
+  let errorMessage = 'Something went wrong';
 
-  response.status(statusCode);
-
-  let errorMessage = 'Something went wrong: ';
-  if (error instanceof Error) {
-    errorMessage += error.message;
+  if (error instanceof ZodError) {
+    response.status(400).json({ error: error.errors });
+  } else if (error instanceof Error) {
+    errorMessage = error instanceof Error ? error.message : error;
+    response.status(400).json({
+      errorMessage,
+    });
+  } else {
+    response.status(500).json({
+      errorMessage,
+    });
   }
-
-  const responseBody = {
-    message: errorMessage,
-  };
-
-  console.log('Error: ', responseBody);
-
-  response.json(responseBody);
 }
