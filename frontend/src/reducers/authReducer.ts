@@ -25,15 +25,20 @@ export const setReduxLogin = (email: string, password: string) => {
   };
 };
 
-export const setReduxAuth = (user: LoggedUser) => {
+export const getReduxAuth = () => {
   return async (dispatch: Dispatch) => {
-    dispatch(setUser(user));
+    const loggedUserJSON = window.localStorage.getItem('loggedUser');
+    if (loggedUserJSON) {
+      const loggedUser: LoggedUser = JSON.parse(loggedUserJSON);
+      dispatch(setUser(loggedUser));
+    }
   };
 };
 
 export const setReduxLogout = () => {
   return async (dispatch: Dispatch) => {
     dispatch(logout());
+    window.localStorage.removeItem('loggedUser');
   };
 };
 
