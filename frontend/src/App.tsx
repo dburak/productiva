@@ -5,20 +5,19 @@ import { message } from 'antd';
 import Auth from './components/AuthPage/Auth';
 import MainLayout from './components/Layout/MainLayout';
 import HomePage from './components/HomePage/HomePage';
-import CompanyPage from './components/CompanyPage/CompanyPage';
-import ProductPage from './components/ProductPage/ProductPage';
+import CompaniesPage from './components/CompaniesPage/CompaniesPage';
+import ProductsPage from './components/ProductsPage/ProductsPage';
+import { AuthState } from './types';
 
 import { useAppDispatch, useAppSelector } from './hooks';
 import { getReduxAuth } from './reducers/authReducer';
 
 const App = () => {
   const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.login);
+  const user = useAppSelector((state: AuthState) => state.login);
 
   const [isLoading, setIsLoading] = useState(true);
   const [messageApi, contextHolder] = message.useMessage();
-
-  console.log(user);
 
   useEffect(() => {
     messageApi.loading('Loading...');
@@ -49,11 +48,11 @@ const App = () => {
           />
           <Route
             path='/companies'
-            element={user ? <CompanyPage /> : <Navigate to='/auth' />}
+            element={user ? <CompaniesPage /> : <Navigate to='/auth' />}
           />
           <Route
             path='/products'
-            element={user ? <ProductPage /> : <Navigate to='/auth' />}
+            element={user ? <ProductsPage /> : <Navigate to='/auth' />}
           />
         </Route>
       </Routes>

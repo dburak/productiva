@@ -38,8 +38,22 @@ const createProduct = async (
 };
 
 const getProducts = async () => {
+  const formatCategory = (category: string) => {
+    return category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
+  };
+
   const products: ProductDocument[] = await Product.find({});
-  return products;
+
+  const filterByCategory = [
+    ...new Set(products.map((product) => formatCategory(product.category))),
+  ];
+
+  const productsWithCategories = {
+    filterByCategory,
+    products,
+  };
+
+  return productsWithCategories;
 };
 
 const updateProductById = async (
@@ -78,11 +92,28 @@ const updateProductById = async (
 };
 
 const deleteProductById = async (id: string) => {
-  const product: ProductDocument | null = await Product.findByIdAndDelete(id);
+  const product: ProductDocument | null = await Product.findById(id);
 
   if (!product) {
     throw new Error('Product not found');
   }
+
+  // delete product from company's products list
+  if (product) {
+    const company: CompanyDocument | null = await Company.findById(
+      product.company
+    );
+
+    if (company) {
+      console.log(company.products);
+      company.products = company.products.filter(
+        (product) => String(product._id) !== id
+      );
+      company.save();
+    }
+  }
+
+  await Product.deleteOne({ _id: id });
 
   return product;
 };

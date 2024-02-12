@@ -18,7 +18,6 @@ const Auth: React.FC = () => {
 
   const onFinish = (values: AuthFormValues) => {
     if (isLogin) {
-      console.log('Received values:', values);
       dispatch(setReduxLogin(values.email, values.password))
         .then(() => {
           messageApi.success('Logged in successfully');
@@ -27,7 +26,6 @@ const Auth: React.FC = () => {
           messageApi.error("Couldn't log in. Please check your inputs.");
         });
     } else {
-      console.log('Received values:', values);
       authService
         .signup(values)
         .then(() => {

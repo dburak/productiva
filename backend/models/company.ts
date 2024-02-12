@@ -4,7 +4,7 @@ export interface CompanyDocument extends Document {
   name: string;
   legalNumber: string;
   country: string;
-  website: string;
+  website?: string;
   products: mongoose.Types.ObjectId[];
 }
 

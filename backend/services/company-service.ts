@@ -4,7 +4,7 @@ const createCompany = async (
   name: string,
   legalNumber: string,
   country: string,
-  website: string
+  website: string | undefined
 ) => {
   const newCompany = new Company({
     name,
@@ -35,7 +35,7 @@ const updateCompanyById = async (
   name: string,
   legalNumber: string,
   country: string,
-  website: string
+  website: string | undefined
 ) => {
   const company = await Company.findById(id);
 

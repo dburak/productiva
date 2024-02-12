@@ -20,3 +20,52 @@ export interface AuthFormValues {
   password: string;
   name: string;
 }
+
+export interface AuthState {
+  login: LoggedUser | null;
+}
+
+export interface Company {
+  id: string;
+  name: string;
+  legalNumber: string;
+  country: string;
+  website?: string;
+  products: Product[];
+}
+
+export type CreateCompany = Omit<Company, 'products'>;
+
+export type CompanyProducts = Pick<Company, 'products'>;
+
+export interface Product {
+  id: string;
+  name: string;
+  category: string;
+  amount: number;
+  unit: string;
+  company: Company;
+}
+
+export type ProductsWithCategories = {
+  filterByCategory: string[];
+  products: Product[];
+};
+
+export interface UpdateProduct {
+  id: string;
+  name: string;
+  category: string;
+  amount: number;
+  unit: string;
+  company: string;
+}
+
+export interface ProductsState {
+  filterByCategory: string[];
+  products: Product[];
+}
+
+export interface CompaniesState {
+  companies: Company[];
+}
