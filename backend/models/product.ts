@@ -6,6 +6,7 @@ export interface ProductDocument extends Document {
   amount: number;
   unit: string;
   company: mongoose.Types.ObjectId;
+  createdAt: Date;
 }
 
 const ProductSchema: Schema<ProductDocument> = new Schema({
@@ -17,6 +18,10 @@ const ProductSchema: Schema<ProductDocument> = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Company',
     autopopulate: { maxDepth: 1 },
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 

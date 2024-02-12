@@ -6,6 +6,7 @@ export interface CompanyDocument extends Document {
   country: string;
   website?: string;
   products: mongoose.Types.ObjectId[];
+  createdAt: Date;
 }
 
 const CompanySchema: Schema<CompanyDocument> = new Schema({
@@ -23,6 +24,10 @@ const CompanySchema: Schema<CompanyDocument> = new Schema({
       autopopulate: { maxDepth: 1 },
     },
   ],
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 CompanySchema.set('toJSON', {

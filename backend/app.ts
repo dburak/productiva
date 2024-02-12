@@ -8,6 +8,7 @@ import usersRouter from './routes/users';
 import loginRouter from './routes/login';
 import companiesRouter from './routes/companies';
 import productsRouter from './routes/products';
+import homepageRouter from './routes/homepage';
 
 const app = express();
 connectToDatabase();
@@ -22,6 +23,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/companies', companiesRouter);
 app.use('/api/products', productsRouter);
+app.use('/api/homepage', homepageRouter);
 
 // Custom middleware to handle errors
 app.use(errorHandler);
