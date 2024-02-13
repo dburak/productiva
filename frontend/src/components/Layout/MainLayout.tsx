@@ -12,7 +12,7 @@ const MainLayout = () => {
   return (
     <Layout>
       <Sider
-        className='h-screen sticky left-0 bottom-0 top-0'
+        className='sticky left-0 bottom-0 top-0'
         theme='light'
         trigger='null'
         collapsed={collapsed}
@@ -29,7 +29,7 @@ const MainLayout = () => {
         <Header className='flex pt-3 bg-primary'>
           <CustomHeader />
         </Header>
-        <Content className='my-6 mx-4'>
+        <Content className='my-6 mx-4 min-h-screen'>
           <Outlet />
         </Content>
       </Layout>

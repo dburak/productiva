@@ -50,7 +50,7 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
 
   return (
     <>
-      <Flex justify='center'>
+      <Flex justify='center' className=''>
         <div className='text-primary mt-8 mb-24 text-2xl'>
           <div className='flex items-center justify-center gap-2'>
             <FaProductHunt />

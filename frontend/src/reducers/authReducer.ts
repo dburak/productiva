@@ -4,6 +4,7 @@ import { Dispatch } from 'redux';
 import { LoggedUser } from '../types';
 import productsService from '../services/products';
 import companiesService from '../services/companies';
+import statisticsService from '../services/statistics';
 
 const loginSlice = createSlice({
   name: 'login',
@@ -33,6 +34,7 @@ export const getReduxAuth = () => {
       const loggedUser: LoggedUser = JSON.parse(loggedUserJSON);
       productsService.setToken(loggedUser.token);
       companiesService.setToken(loggedUser.token);
+      statisticsService.setToken(loggedUser.token);
       dispatch(setUser(loggedUser));
     }
   };

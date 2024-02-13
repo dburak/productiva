@@ -69,3 +69,17 @@ export interface ProductsState {
 export interface CompaniesState {
   companies: Company[];
 }
+
+export interface CompanyStatistics {
+  sortedCompaniesByProductsCount: { [key: string]: number };
+  numberOfCompanies: number;
+  latestAddedCompanies: string[];
+  todaysAddedCompanies: string[];
+}
+
+export interface ProductStatistics {
+  sortedCategoriesByProductsCount: { [key: string]: number };
+  numberOfProducts: number;
+  latestAddedProducts: string[];
+  todaysAddedProducts: string[];
+}

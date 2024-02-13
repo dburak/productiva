@@ -7,17 +7,20 @@ export async function getSortedCategoriesByProductsCount(): Promise<{
   const categoryProductCounts: { [key: string]: number } = {};
 
   products.forEach((product) => {
-    categoryProductCounts[product.category] =
-      (categoryProductCounts[product.category] || 0) + 1;
+    const category = product.category.toLowerCase();
+    categoryProductCounts[category] =
+      (categoryProductCounts[category] || 0) + 1;
   });
 
-  const sortedCategoriesByProductsCount = Object.fromEntries(
-    Object.entries(categoryProductCounts).sort(
-      ([, aCount], [, bCount]) => bCount - aCount
-    )
-  );
+  const mergedCategories: { [key: string]: number } = {};
+  Object.entries(categoryProductCounts).forEach(([category, count]) => {
+    const normalizedCategory =
+      category.charAt(0).toUpperCase() + category.slice(1);
+    mergedCategories[normalizedCategory] =
+      (mergedCategories[normalizedCategory] || 0) + count;
+  });
 
-  return sortedCategoriesByProductsCount;
+  return mergedCategories;
 }
 
 export async function getNumberOfProducts(): Promise<number> {
