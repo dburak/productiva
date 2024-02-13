@@ -105,7 +105,6 @@ const deleteProductById = async (id: string) => {
     );
 
     if (company) {
-      console.log(company.products);
       company.products = company.products.filter(
         (product) => String(product._id) !== id
       );

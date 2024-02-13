@@ -82,7 +82,6 @@ const deleteProductById = (id) => __awaiter(void 0, void 0, void 0, function* ()
     if (product) {
         const company = yield company_1.default.findById(product.company);
         if (company) {
-            console.log(company.products);
             company.products = company.products.filter((product) => String(product._id) !== id);
             company.save();
         }

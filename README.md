@@ -1,4 +1,5 @@
 # productiva
+
 # Full Stack Company / Product Management System
 
 This project is a full-stack web application built using TypeScript, Express, MongoDB Atlas, React.js, Ant Design, Tailwind CSS, Redux Toolkit, and Redux Thunk for managing companies and products. The application features a classical login/register page for user authentication. After logging in, users are welcomed to a homepage displaying statistical reports and dynamically updated panels regarding the data.
@@ -10,7 +11,6 @@ This project is a full-stack web application built using TypeScript, Express, Mo
 - Search and sorting functionality with dynamically filtered product table, allowing users to dynamically filter product data.
 - Company management: Add, edit, and remove companies
 - Product management: Add, edit, and remove products with relation to companies
-
 
 ## Technologies Used
 
