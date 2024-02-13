@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import cors from 'cors';
 import { connectToDatabase } from './database-connection';
 import { errorHandler } from './middlewares/errorHandler';
 
@@ -17,6 +18,7 @@ connectToDatabase();
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(helmet());
+app.use(cors());
 
 // routes
 app.use('/api/users', usersRouter);
