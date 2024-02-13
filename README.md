@@ -22,6 +22,7 @@ This project is a full-stack web application built using TypeScript, Express, Mo
 - Tailwind CSS for styling
 - Redux Toolkit for state management
 - Redux Thunk for asynchronous actions
+- JWT (JSON Web Token) for authentication
 
 ## How to Run
 
