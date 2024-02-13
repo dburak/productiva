@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Product, UpdateProduct, ProductsWithCategories } from '../types';
 
-const baseUrl = '/api';
+const baseUrl = 'https://productiva-server.onrender.com/api';
 let token: string | null = null;
 
 const setToken = (newToken: string) => {

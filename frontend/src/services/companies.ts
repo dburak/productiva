@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Company, CreateCompany } from '../types';
 
-const baseUrl = '/api';
+const baseUrl = 'https://productiva-server.onrender.com/api';
 let token: string | null = null;
 
 const setToken = (newToken: string) => {

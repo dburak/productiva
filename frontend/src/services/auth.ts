@@ -6,7 +6,7 @@ import {
   LoggedUser,
 } from '../types';
 
-const baseUrl = '/api';
+const baseUrl = 'https://productiva-server.onrender.com/api';
 
 const login = async (credentials: LoginCredentials) => {
   const response = await axios.post<LoggedUser>(
