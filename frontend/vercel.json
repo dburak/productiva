@@ -1,8 +1,0 @@
-{
-    "redirects": [
-      {
-        "source": "/api(.*)",
-        "destination": "https://productiva-server.onrender.com"
-      }
-    ]
-  }
