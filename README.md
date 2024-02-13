@@ -16,7 +16,6 @@ The project is live and accessible at [Productiva](https://productiva.vercel.app
 - Company management: Add, edit, and remove companies
 - Product management: Add, edit, and remove products with relation to companies
 
-## Technologies Used
 
 ### Technologies Used
 
