@@ -8,6 +8,8 @@ This project is a full-stack web application built using TypeScript, Express, Mo
 
 The project is live and accessible at [Productiva](https://productiva.vercel.app/)
 
+**Note on Live Demo:** Please be aware that due to the utilization of a free backend service, the initial response might take 1-2 minutes to retrieve data.
+
 ### Features
 
 - User authentication (login/register)
@@ -15,7 +17,6 @@ The project is live and accessible at [Productiva](https://productiva.vercel.app
 - Search and sorting functionality with dynamically filtered product table, allowing users to dynamically filter product data.
 - Company management: Add, edit, and remove companies
 - Product management: Add, edit, and remove products with relation to companies
-
 
 ### Technologies Used
 
