@@ -17,14 +17,14 @@ const tokenExtractor = (
   response: Response,
   next: NextFunction
 ) => {
-  const authorization = request.headers.authorization;
+  const authorization = request.headers?.authorization;
 
-  if (authorization && authorization.startsWith('Bearer ')) {
-    request.token = authorization.replace('Bearer ', '');
-    next();
-  } else {
-    response.status(401).json({ error: 'Unauthorized' });
+  if (!authorization || !authorization.startsWith('Bearer ')) {
+    return response.status(401).json({ error: 'Unauthorized' });
   }
+
+  request.token = authorization.replace('Bearer ', '');
+  next();
 };
 
 const userExtractor = (
@@ -39,7 +39,10 @@ const userExtractor = (
       return response.status(401).json({ error: 'Token missing' });
     }
 
-    const decodedToken = jwt.verify(token, config.SECRET) as DecodedTokenUser;
+    const decodedToken = jwt.verify(
+      token,
+      config.SECRET
+    ) as DecodedTokenUser;
 
     if (!decodedToken.id) {
       return response.status(401).json({ error: 'Token invalid' });
@@ -48,6 +51,7 @@ const userExtractor = (
     request.user = decodedToken;
     next();
   } catch (error) {
+    console.error(error);
     response.status(401).json({ error: 'Unauthorized' });
   }
 };
@@ -57,30 +61,10 @@ const tokenAndUserExtractor = (
   response: Response,
   next: NextFunction
 ) => {
-  try {
-    const authorization = request.headers.authorization;
-
-    if (!authorization || !authorization.startsWith('Bearer ')) {
-      return response.status(401).json({ error: 'Unauthorized' });
-    }
-
-    const token = authorization.replace('Bearer ', '');
-
-    if (!token) {
-      return response.status(401).json({ error: 'Token missing' });
-    }
-
-    const decodedToken = jwt.verify(token, config.SECRET) as DecodedTokenUser;
-
-    if (!decodedToken.id) {
-      return response.status(401).json({ error: 'Token invalid' });
-    }
-
-    request.user = decodedToken;
-    next();
-  } catch (error) {
-    response.status(401).json({ error: 'Unauthorized' });
-  }
+  tokenExtractor(request, response, (err: any) => {
+    if (err) return next(err);
+    userExtractor(request, response, next);
+  });
 };
 
 export { tokenExtractor, userExtractor, tokenAndUserExtractor };

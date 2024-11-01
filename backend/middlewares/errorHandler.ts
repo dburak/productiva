@@ -12,13 +12,11 @@ export function errorHandler(
   if (error instanceof ZodError) {
     response.status(400).json({ error: error.errors });
   } else if (error instanceof Error) {
-    errorMessage = error instanceof Error ? error.message : error;
-    response.status(400).json({
-      errorMessage,
-    });
-  } else {
+    errorMessage = error.message;
     response.status(500).json({
       errorMessage,
     });
+  } else {
+    response.status(500).json({ error: errorMessage });
   }
 }
